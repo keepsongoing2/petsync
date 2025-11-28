@@ -1,2 +1,2 @@
-# petsync
-Unifies and streamlines all pet care service bookings into one synced appointment calendar
+npm install -g @google/clasp
+   clasp login
