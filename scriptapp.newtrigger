@@ -1,0 +1,19 @@
+function setupTriggers() {
+  deleteFetchDataTriggers();
+  ScriptApp.newTrigger('fetchData')
+    .timeBased()
+    .everyHours(Config.getTriggerConfig().interval)
+    .inTimezone(Config.getTriggerConfig().timeZone)
+    .notifyFailure(true)
+    .create();
+  return { success: true, triggersCreated: 1 };
+}
+
+function deleteFetchDataTriggers() {
+  var triggers = ScriptApp.getProjectTriggers();
+  triggers.forEach(function(trigger) {
+    if (trigger.getHandlerFunction() === 'fetchData') {
+      ScriptApp.deleteTrigger(trigger);
+    }
+  });
+}
